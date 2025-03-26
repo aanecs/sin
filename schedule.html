@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Our First Date</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Menghubungkan file CSS -->
+    <style>
+        .artist-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .artist {
+            text-align: center;
+        }
+        .artist img {
+            width: 100px; /* Atur lebar gambar sesuai kebutuhan */
+            height: 100px; /* Atur tinggi gambar sesuai kebutuhan */
+            border-radius: 10px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Schedule Our First Date</h2>
+    <div id="schedule">
+        <label for="date">Choose a date:</label>
+        <input type="date" id="date" required>
+        
+        <label for="time">Choose a time:</label>
+        <input type="time" id="time" required>
+        
+        <label for="artist">Choose an artist:</label>
+        <div class="artist-container">
+            
+            <div class="artist">
+                <input type="radio" id="artist1" name="artist" value="juicy_luicy" required>
+                <label for="artist1">
+                    <img src="images/juicy_luicy_image.jpg.jpg" alt="Juicy Luicy">
+                </label>
+                <span class="artist-name">Juicy Luicy</span>
+            </div>
+            
+
+            <div class="artist">
+                <input type="radio" id="artist2" name="artist" value="NIKI" required>
+                <label for="artist2">
+                    <img src="images/niki_image.jpg.jpg" alt="NIKI">
+                </label>
+                <span class="artist-name">NIKI</span>
+            </div>
+            
+            <div class="artist">
+                <input type="radio" id="artist3" name="artist" value="nadin_amizah" required>
+                <label for="artist3">
+                    <img src="images/nadin_amizah_image.jpg" alt="Nadin Amizah">
+                </label>
+                <span class="artist-name">Nadin Amizah</span>
+            </div>
+            
+        </div>
+        
+        <button class="button continue" id="continueButton">Continue Our Date</button>
+    </div>
+
+    <script>
+        // Menangani klik pada tombol "Continue Our Date"
+        document.getElementById('continueButton').addEventListener('click', () => {
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const artist = document.querySelector('input[name="artist"]:checked');
+
+            // Validasi input
+            if (!date || !time || !artist) {
+                alert('Harap isi semua informasi yang diperlukan.');
+                return;
+            }
+
+            const artistValue = artist.value;
+            const queryString = `?date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}&artist=${encodeURIComponent(artistValue)}`;
+            
+            window.location.href = `special-date.html${queryString}`;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+
+            // Membuat efek trail
+            createLoveTrail(x, y);
+        });
+
+        function createLoveEffect() {
+            const loveEffect = document.createElement('div');
+            loveEffect.className = 'love-effect';
+            loveEffect.innerText = '❤️';
+            document.body.appendChild(loveEffect);
+
+            // Atur posisi awal di bawah layar
+            loveEffect.style.left = `${Math.random() * window.innerWidth}px`;
+            loveEffect.style.bottom = '0px';
+
+            // Animasi naik
+            setTimeout(() => {
+                loveEffect.style.transform = 'translateY(-100vh)';
+                loveEffect.style.opacity = '0';
+            }, 10);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                loveEffect.remove();
+            }, 2000);
+        }
+
+        function createLoveTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.innerText = '❤️';
+            document.body.appendChild(trail);
+
+            // Atur posisi trail dengan offset yang lebih jauh
+            const offsetX = 30; // Jarak horizontal dari kursor
+            const offsetY = 30; // Jarak vertikal dari kursor
+            trail.style.left = `${x + offsetX}px`; // Tambahkan offset horizontal
+            trail.style.top = `${y + offsetY}px`; // Tambahkan offset vertikal
+            trail.style.transform = 'translate(-50%, -50%)'; // Pusatkan elemen
+
+            // Animasi untuk menghilang
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                trail.style.transform = 'translate(-50%, -50%) scale(1.5)'; // Membesar saat menghilang
+            }, 10);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

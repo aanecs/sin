@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Special Date</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h2>Our Special Date</h2>
+    <div id="dateInfo"></div>
+
+    <!-- New Message Below -->
+    <p>Can’t wait to see you ❤️</p>
+
+    <script>
+        // Retrieve parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const date = urlParams.get('date');
+        const time = urlParams.get('time');
+        const artist = urlParams.get('artist');
+
+        // Display information
+        if (date && time && artist) {
+            document.getElementById('dateInfo').innerHTML = `
+                <p>Date is scheduled on <strong>${date}</strong> at <strong>${time}</strong> with artist <strong>${artist}</strong>.</p>
+            `;
+        } else {
+            document.getElementById('dateInfo').innerText = 'Incomplete information.';
+        }
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+
+            // Membuat efek trail
+            createLoveTrail(x, y);
+        });
+
+        function createLoveEffect() {
+            const loveEffect = document.createElement('div');
+            loveEffect.className = 'love-effect';
+            loveEffect.innerText = '❤️';
+            document.body.appendChild(loveEffect);
+
+            // Atur posisi awal di bawah layar
+            loveEffect.style.left = `${Math.random() * window.innerWidth}px`;
+            loveEffect.style.bottom = '0px';
+
+            // Animasi naik
+            setTimeout(() => {
+                loveEffect.style.transform = 'translateY(-100vh)';
+                loveEffect.style.opacity = '0';
+            }, 10);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                loveEffect.remove();
+            }, 2000);
+        }
+
+        function createLoveTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.innerText = '❤️';
+            document.body.appendChild(trail);
+
+            // Atur posisi trail dengan offset yang lebih jauh
+            const offsetX = 30; // Jarak horizontal dari kursor
+            const offsetY = 30; // Jarak vertikal dari kursor
+            trail.style.left = `${x + offsetX}px`; // Tambahkan offset horizontal
+            trail.style.top = `${y + offsetY}px`; // Tambahkan offset vertikal
+            trail.style.transform = 'translate(-50%, -50%)'; // Pusatkan elemen
+
+            // Animasi untuk menghilang
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                trail.style.transform = 'translate(-50%, -50%) scale(1.5)'; // Membesar saat menghilang
+            }, 10);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

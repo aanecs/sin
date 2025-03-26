@@ -1,0 +1,135 @@
+<!DOCTYPE html> 
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Girlfriend?</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Menghubungkan file CSS -->
+</head>
+<body>
+
+    <h1>Will you be my girlfriend?</h1>
+    <button class="button yes" id="yesButton">OFC, I DO!</button>
+    <button class="button no" id="noButton">sorry, i can't</button>
+    
+    <!-- Notifikasi -->
+    <div id="notification" class="notification hidden">YAYYY, TYSM BUB!!! ❤️</div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const notification = document.getElementById('notification');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        // Memainkan musik saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            backgroundMusic.play();
+        });
+
+        // Menangani klik pada tombol "Ya"
+        document.getElementById('yesButton').addEventListener('click', () => {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createLoveEffect, i * 100);
+            }
+            showNotification();
+            setTimeout(() => {
+                window.location.href = 'schedule.html';
+            }, 5000);
+        });
+
+        // Menangani mouseover pada tombol "Menolak"
+        noButton.addEventListener('mouseover', () => {
+            setTimeout(() => {
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 100);
+                noButton.style.position = 'absolute';
+                noButton.style.left = `${x}px`;
+                noButton.style.top = `${y}px`;
+            }, 100);
+        });
+
+        function createLoveEffect() {
+            const loveEffect = document.createElement('div');
+            loveEffect.className = 'love-effect';
+            loveEffect.innerText = '❤️';
+            document.body.appendChild(loveEffect);
+
+            loveEffect.style.left = `${Math.random() * window.innerWidth}px`;
+            loveEffect.style.bottom = '0px';
+
+            setTimeout(() => {
+                loveEffect.style.transform = 'translateY(-100vh)';
+                loveEffect.style.opacity = '0';
+            }, 10);
+
+            setTimeout(() => {
+                loveEffect.remove();
+            }, 2000);
+        }
+
+        function showNotification() {
+            notification.classList.remove('hidden');
+            notification.classList.add('visible');
+            setTimeout(() => {
+                notification.classList.remove('visible');
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+
+            // Membuat efek trail
+            createLoveTrail(x, y);
+        });
+
+        function createLoveEffect() {
+            const loveEffect = document.createElement('div');
+            loveEffect.className = 'love-effect';
+            loveEffect.innerText = '❤️';
+            document.body.appendChild(loveEffect);
+
+            // Atur posisi awal di bawah layar
+            loveEffect.style.left = `${Math.random() * window.innerWidth}px`;
+            loveEffect.style.bottom = '0px';
+
+            // Animasi naik
+            setTimeout(() => {
+                loveEffect.style.transform = 'translateY(-100vh)';
+                loveEffect.style.opacity = '0';
+            }, 10);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                loveEffect.remove();
+            }, 2000);
+        }
+
+        function createLoveTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.innerText = '❤️';
+            document.body.appendChild(trail);
+
+            // Atur posisi trail dengan offset yang lebih jauh
+            const offsetX = 30; // Jarak horizontal dari kursor
+            const offsetY = 30; // Jarak vertikal dari kursor
+            trail.style.left = `${x + offsetX}px`; // Tambahkan offset horizontal
+            trail.style.top = `${y + offsetY}px`; // Tambahkan offset vertikal
+            trail.style.transform = 'translate(-50%, -50%)'; // Pusatkan elemen
+
+            // Animasi untuk menghilang
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                trail.style.transform = 'translate(-50%, -50%) scale(1.5)'; // Membesar saat menghilang
+            }, 10);
+
+            // Hapus elemen setelah animasi selesai
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>

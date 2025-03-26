@@ -1,0 +1,176 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(270deg, #ff4081, #ff6f61, #ff4081, #ff6f61);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite; /* Animasi gradien */
+    color: white;
+    font-family: 'Georgia', serif; /* Menggunakan font yang lebih anggun */
+    text-align: center;
+    overflow: hidden; /* Menghindari scrollbar */
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease; /* Transisi halus untuk judul */
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 20px 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s, background-color 0.3s; /* Transisi halus untuk tombol */
+}
+
+.yes {
+    background-color: #ff4081; /* Warna merah muda */
+    color: white;
+}
+
+.no {
+    background-color: #f44336; /* Merah */
+    color: white;
+}
+
+/* Efek hover untuk tombol */
+.button:hover {
+    transform: scale(1.1); /* Membesarkan tombol saat hover */
+}
+
+/* Efek untuk emoji "love" yang muncul dari bawah */
+.love-effect {
+    position: absolute;
+    font-size: 2em;
+    opacity: 1;
+    transition: transform 2s ease, opacity 2s ease; /* Transisi halus untuk efek */
+    animation: float 2s ease forwards; /* Menambahkan animasi float */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0); /* Mulai dari bawah */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh); /* Bergerak ke atas */
+        opacity: 0; /* Memudarkan */
+    }
+}
+
+/* Efek trail untuk emoji "love" */
+.trail {
+    position: absolute;
+    font-size: 2em;
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease; /* Transisi halus untuk trail */
+}
+
+/* Notifikasi */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #ff4081;
+    padding: 15px 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.5em;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000; /* Pastikan notifikasi di atas elemen lain */
+}
+
+.notification.visible {
+    opacity: 1; /* Tampilkan notifikasi */
+}
+
+.notification.hidden {
+    opacity: 0; /* Sembunyikan notifikasi */
+}
+
+/* Tambahan untuk form jadwal */
+#schedule {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+input, select {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ff4081;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 200px; /* Lebar input dan select */
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff6f61; /* Warna border saat fokus */
+}
+
+.continue {
+    background-color: #ff4081; /* Warna tombol lanjut */
+    color: white;
+    margin-top: 20px;
+}
+
+.artist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Pusatkan elemen */
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+}
+
+.artist img {
+    width: 100px; /* Atur lebar gambar */
+    height: 100px; /* Atur tinggi gambar */
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+
+.artist-name {
+    margin-top: 5px; /* Beri jarak antara gambar dan teks */
+    font-size: 14px;
+    font-weight: bold;
+}
